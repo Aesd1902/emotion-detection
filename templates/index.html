@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emotion Detection</title>
+    <link rel="stylesheet" href="static/styles.css">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+</head>
+<body>
+
+    <!-- Particle container for background effects -->
+    <div id="particles-js" class="particles-container"></div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <h1>Upload an Image for Emotion Detection</h1>
+
+        <!-- Form for image upload -->
+        <form action="/predict" method="post" enctype="multipart/form-data" class="upload-form">
+            <!-- Hidden file input with an id to be linked to the custom button -->
+            <input type="file" name="image" id="file-input" accept="image/*" required>
+            
+            <!-- Custom upload button linked to the file input -->
+            <label for="file-input" class="upload-btn">Upload Image</label>
+            
+            <!-- Predict button -->
+            <button type="submit">Predict Emotion</button>
+        </form>
+    </div>
+    <div class="container">
+        <h1>Emotion Detection with Webcam</h1>
+        <button onclick="startLiveDetection()">Start Live Detection</button>
+        <div id="video-container">
+            <img id="live-video" src="" alt="Live Emotion Detection Video">
+        </div>
+    </div>
+
+    <script>
+        function startLiveDetection() {
+            document.getElementById("live-video").src = "/live_cam_detection";
+        }
+    </script>
+
+    <script>
+        particlesJS('particles-js', {
+            particles: {
+                number: {
+                    value: 80,
+                    density: {
+                        enable: true,
+                        value_area: 800
+                    }
+                },
+                color: {
+                    value: "#ffffff"
+                },
+                shape: {
+                    type: "circle",
+                    stroke: {
+                        width: 0,
+                        color: "#000000"
+                    },
+                    polygon: {
+                        nb_sides: 5
+                    }
+                },
+                opacity: {
+                    value: 0.5,
+                    random: true,
+                    anim: {
+                        enable: true,
+                        speed: 1,
+                        opacity_min: 0.1,
+                        sync: false
+                    }
+                },
+                size: {
+                    value: 3,
+                    random: true,
+                    anim: {
+                        enable: false
+                    }
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#ffffff",
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 4,
+                    direction: "none",
+                    random: false,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false,
+                    attract: {
+                        enable: false,
+                        rotateX: 600,
+                        rotateY: 1200
+                    }
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: {
+                        enable: true,
+                        mode: "repulse"
+                    },
+                    onclick: {
+                        enable: true,
+                        mode: "push"
+                    },
+                    resize: true
+                },
+                modes: {
+                    repulse: {
+                        distance: 100,
+                        duration: 0.4
+                    },
+                    push: {
+                        particles_nb: 4
+                    }
+                }
+            },
+            retina_detect: true
+        });
+    </script>
+</body>
+</html>
